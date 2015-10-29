@@ -1,8 +1,9 @@
 # Site-provisioning
 The Sogeti Site Provisioning Suite helps Office 365 users create sites and site collection in an easy and consistent way. Via separation of activities on technical knowledge tasks and user capabilities are efficient positioned.
 
-Three levels of technology are recognized in the Site Provisioning Suite
-1.	The SharePoint Expert, who has knowledge about SharePoint capabilities and features. Experienced for making a PNP based SharePoint site template. 
+Three levels of technology are recognized in the Site Provisioning Suite.
+
+1. The SharePoint Expert, who has knowledge about SharePoint capabilities and features. Experienced for making a PNP based SharePoint site template.
 2.	The SharePoint user, knowledgeable about the site or site collection needs of the business. This user will prepare specific site templates for business scenario’s (based on a PNP based SharePoint site template). 
 3.	The Business user, knows when a specific site or site collection is needed. Selects it from the available template list and creates site (collections) simply by giving it a name. 
 
