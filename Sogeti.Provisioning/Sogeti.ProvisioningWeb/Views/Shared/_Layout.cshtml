@@ -1,0 +1,87 @@
+﻿@using Sogeti.Provisioning.Domain
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link rel="stylesheet" href="//appsforoffice.microsoft.com/fabric/1.0/fabric.min.css"/>
+ 
+    
+    
+</head>
+<body style="margin:0">
+    <div class="ms-Grid">
+        <div class="ms-Grid-row">
+            <div class="ms-NavBar ms-bgColor-redDark">
+                <div class="ms-NavBar-openMenu js-openMenu ms-bgColor-redDark">
+                    <i class="ms-Icon ms-Icon--menu ms-bgColor-redDark ms-borderColor-white"></i>
+                </div>
+				<ul class="ms-NavBar-items ms-fontColor-white">
+					<li class="ms-NavBar-item ms-borderColor-white--hover">
+						<a class = " ms-NavBar-link ms-font-l ms-fontColor-white"
+						href="@SharePointContext.GetSPHostUrl(ViewContext.HttpContext.Request)">
+						Back to Site</a>
+					</li>
+
+					<li class="ms-NavBar-item ms-borderColor-white--hover ms-NavBar-item--hasMenu @( ViewBag.Current == "SubSite" ? "is-selected" : "")">
+						<a class="ms-NavBar-link ms-font-l ms-fontColor-white" href="#">Create</a>
+						<i class="ms-NavBar-chevronDown ms-Icon ms-Icon--chevronDown"></i>
+						<ul class="ms-ContextualMenu">
+							<li class="ms-ContextualMenu-item">
+								<a class="ms-ContextualMenu-link ms-font-m"
+								   href="/Site/Index?@SharePointContext.CloneQueryString(ViewContext.HttpContext.Request)">Sub Site</a>
+
+							</li>
+							<li class="ms-ContextualMenu-item">
+								<a class="ms-ContextualMenu-link ms-font-m"
+								   href="/SiteCollection/Index?@SharePointContext.CloneQueryString(ViewContext.HttpContext.Request)">Site Collection</a>
+							</li>
+						</ul>
+					</li>
+
+					<li class="ms-NavBar-item ms-borderColor-white--hover ms-NavBar-item--hasMenu @( ViewBag.Current=="SiteTemplates"? "is-selected" : "")">
+						<a class="ms-NavBar-link ms-font-l ms-fontColor-white" href="#">Site template</a>
+						<i class="ms-NavBar-chevronDown ms-Icon ms-Icon--chevronDown"></i>
+						<ul class="ms-ContextualMenu">
+							<li class="ms-ContextualMenu-item">
+								<a class="ms-ContextualMenu-link ms-font-m"
+								   href="/SiteTemplate/PickFile?@SharePointContext.CloneQueryString(ViewContext.HttpContext.Request)">Create new...</a>
+
+							</li>
+							<li class="ms-ContextualMenu-item">
+								<a class="ms-ContextualMenu-link ms-font-m"
+								   href="/SiteTemplate/Index?@SharePointContext.CloneQueryString(ViewContext.HttpContext.Request)">Manage</a>
+							</li>
+						</ul>
+					</li>
+
+					<li class="ms-NavBar-item ms-borderColor-white--hover @( ViewBag.Current == "Logs" ? "is-selected" : "")">
+						<a class="ms-NavBar-link ms-font-l ms-fontColor-white" href="/Log/Queue?@SharePointContext.CloneQueryString(ViewContext.HttpContext.Request)">Logs</a>
+					</li>
+
+					<li class="ms-NavBar-item ms-borderColor-white--hover @( ViewBag.Current == "About" ? "is-selected" : "")">
+						<a class="ms-NavBar-link ms-font-l ms-fontColor-white" href="/About/Index?@SharePointContext.CloneQueryString(ViewContext.HttpContext.Request)">About</a>
+					</li>
+
+				</ul>
+            </div>
+        </div>
+        <div class="ms-Grid-row">
+                @RenderBody()
+        </div>
+        <br/>
+    </div>
+   
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/signalr")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/spcontext")
+    @Scripts.Render("~/bundles/fabric")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,82 @@
+﻿@using Sogeti.Provisioning.Domain
+@model Sogeti.Provisioning.DataAccess.Repositories.EntityViewModel
+@{
+    ViewBag.Title = "Logs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="ms-Grid-row ms-u-12 ms-bgColor-red ms-fontColor-white intro">
+    <div class="ms-Grid-col ms-u-lg10 ms-u-xl8 ms-u-xlPush2 ms-u-lgPush1 jumbotron">
+        <h2 class="ms-font-su ms-fontColor-white">@ViewBag.Title</h2>
+    </div>
+</div>
+<div class="ms-Grid-row ms-u-sm12">
+    <div class="ms-Grid-col ms-u-sm2 ms-u-md2 ms-u-lg2 ms-u-smPush">
+    </div>
+    <div class="ms-List ms-Grid-col ms-u-sm10 ms-u-md10 ms-u-lg3 id=" ProcessQueue" style="padding:10px">
+        <div class="ms-Grid-col ms-u-sm12">
+            <div class="ms-font-su ms-u-sm12">Queue</div>
+            @if (Model.logEntities.ToList().Count > 0)
+            {
+                <div class="ms-Grid-col ms-u-sm12">
+                    @foreach (var template in Model.logEntities)
+                    {
+                        <div class="ms-ListItem-selectionTarget js-toggleSelection"></div>
+                        <H1 class="ms-ListItem-primaryText ms-u-12 ms-u-sm12">@template.CreatedSiteName</H1>
+                        <div class="ms-Grid-col ms-u-sm12" id="Something">
+                            <div class="ms-ListItem ms-Grid-col ms-u-sm2 ms-u-md2" id="@template.RequestID" style="padding-left: 0; padding-right: 28px;">
+                                @{
+                                    switch (@template.ProvisioningState)
+                                    {
+                                        case "Queued":
+                                            <text>
+                                                <i class="ms-fontColor-orangeLight ms-Icon ms-Icon--sortLines" style="font-size:xx-large;"></i>
+                                            </text>
+                                            break;
+                                        case "Provisioning":
+                                            <text>
+                                                <i class="ms-fontColor-orangeLight ms-Icon ms-Icon--refresh" style="font-size:xx-large"></i>
+                                            </text>
+                                            break;
+                                        case "Created":
+                                            <i class="ms-fontColor-green ms-Icon ms-Icon--check" style="font-size:xx-large"></i>
+                                            break;
+                                        case "Failed":
+                                            <text>
+                                                <i class="ms-fontColor-red ms-Icon ms-Icon--xCircle" style="font-size:xx-large;background-position:left"></i>
+                                            </text>
+                                            break;
+                                        case "Waiting":
+                                            <i class="ms-fontColor-orangeLight ms-Icon ms-Icon--waffle" style="font-size:xx-large;"></i>
+                                            break;
+                                        default:
+                                            <text>
+                                                <i class="ms-fontColor-blueLight ms-Icon ms-Icon--question" style="font-size:xx-large"></i>
+                                            </text>
+                                            break;
+                                    }
+                                }
+                            </div>
+                            <div class="ms-List ms-Grid-col ms-u-sm10" id="Queue Description">
+                                <div class="ms-ListItem-primaryText ms-Grid-col ms-u-sm12 ">@template.Timestamp.ToString("F")</div>
+                                <div class="ms-ListItem-tertiaryText ms-Grid-col ms-u-md12 ms-u-sm12 text-center">Used template: @template.UsedTemplate</div>
+                                <div class="ms-ListItem-tertiaryText ms-Grid-col ms-u-md12 ms-u-sm12 text-center">@template.ByUser</div>
+                                <div class="ms-ListItem-secondaryText ms-Grid-col ms-u-md12 ms-u-sm12 text-center"><a href="@template.CreatedSiteUrl">@template.CreatedSiteUrl</a><br /></div>
+                                <div class="ms-ListItem ms-Grid-col ms-u-sm12 ms-u-md-12"></div>
+                            </div>
+                        </div>
+                                    }
+                </div>
+                }
+                else
+                {
+                    <div class="ms-Grid-row">
+                        <h1 class="ms-font-xxl">No log entries yet.</h1>
+                        <hr />
+                    </div>
+                }
+        </div>
+    </div>
+    @Html.Partial("_StatusPartial", Model.notificationEntities)
+    <div class="ms-Grid-col ms-u-sm1 ms-u-lg2 ms-u-smPull">
+    </div>
+</div>

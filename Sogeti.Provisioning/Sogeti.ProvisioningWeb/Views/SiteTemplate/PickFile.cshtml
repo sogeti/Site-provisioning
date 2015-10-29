@@ -1,0 +1,98 @@
+﻿@using Sogeti.Provisioning.Domain
+@model Sogeti.ProvisioningWeb.Models.PnpFileViewModel
+
+@{
+    ViewBag.Title = "Select Paterns and Practices Site template.";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="ms-Grid-row ms-bgColor-red  ms-fontColor-white intro">
+    <div class="ms-Grid-col ms-u-lg10 ms-u-xl8 ms-u-xlPush2 ms-u-lgPush1 jumbotron">
+        <h2 class="ms-font-su ms-fontColor-white">
+            Site Template File
+        </h2>
+    </div>
+</div>
+
+
+<form class="Form" id="formId" action="/SiteTemplate/PickFile?@SharePointContext.CloneQueryString(ViewContext.HttpContext.Request)" enctype="multipart/form-data" method="post">
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="ms-Grid-row">
+        <div class="ms-Grid-col ms-u-sm2"></div>
+
+        <div class="ms-Grid-col ms-u-sm4 ">
+            <h2 class="ms-font-xl ms-fontWeight-semibold">Upload</h2>
+            <p class="ms-font-m">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec augue nibh. Nullam laoreet tortor blandit felis porta viverra. Morbi sapien dolor, feugiat ut tincidunt eget, lacinia a dui. Vestibulum consectetur quam ut diam scelerisque, a laoreet arcu volutpat. Mauris vulputate lectus lacus.</p>
+            <div>
+                <div class="ms-TextField">
+                    <a class="ms-Button ms-Button--hero" id="templateFileUploadBtn">
+                        <span class="ms-Button-icon"><i class="ms-Icon ms-Icon--upload"></i></span>
+                        <span class="ms-Button-label">Upload template File</span>
+                    </a>
+                    <input type="file" id="PnpTemplateFileUpload" accept=".xml" name="file" size="40" class="hidden-file-upload" />
+                </div>
+            </div>
+        </div>
+
+        <div class="ms-Grid-col ms-u-sm4 ">
+            @Html.HiddenFor(model => model.PnpFiles)
+            @*@Html.HiddenFor(model => model.PnpFileList)*@
+            <h2 class="ms-font-xl ms-fontWeight-semibold">Select</h2>
+            <p class="ms-font-m">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec augue nibh. Nullam laoreet tortor blandit felis porta viverra. Morbi sapien dolor, feugiat ut tincidunt eget, lacinia a dui. Vestibulum consectetur quam ut diam scelerisque, a laoreet arcu volutpat. Mauris vulputate lectus lacus.</p>
+
+            <div class="ms-TextField is-required">
+
+                <div class="ms-Dropdown" tabindex="0">
+                    <i class="ms-Dropdown-caretDown ms-Icon ms-Icon--caretDown"></i>
+                    @Html.DropDownListFor(model => model.SelectedPnpFile, Model.PnpFileList, new { SelectedPnpFile = "SelectedPnpFile", @class = "ms-Dropdown-select", @id = "dropdownList" })
+                    @Html.ValidationMessageFor(model => model.SelectedPnpFile, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </div>
+
+        <div class="ms-Grid-col ms-u-sm2"></div>
+    </div>
+    <div class="ms-Grid-row">
+
+        <div class="ms-Grid-col ms-u-sm2 "></div>
+        <div class="ms-Grid-col ms-u-sm8 block"></div>
+        <div class="ms-Grid-col ms-u-sm2 "></div>
+    </div>
+
+    <div class="ms-Grid-row">
+        <div class="ms-Grid-col ms-u-sm10 " align="right">
+            <div class="ms-Grid-row">
+                <div class="ms-TextField">
+
+
+                    <div class="upload-result ms-font-xl ms-fontWeight-semibold">@Html.DisplayTextFor(model => model.file.FileName)</div>
+                    <div class="ms-fontColor-red upload-result-failed">@Html.DisplayTextFor(model => model.PnpFileError)</div>
+                    @Html.ValidationMessageFor(model => model.file, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="ms-Grid-row">
+
+                <div class="SubmitButton">
+                    <button class="ms-Button ms-Button--compound">
+                        <span class="ms-Button-label">Build</span>
+                        <span class="ms-Button-description">Set template specific settings.</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="ms-Grid-col ms-u-sm2"></div>
+    </div>
+
+</form>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/devpnp")
+
+    <script src="~/Scripts/App/Views/PickFile.js"></script>
+
+
+}

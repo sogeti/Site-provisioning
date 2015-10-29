@@ -1,0 +1,104 @@
+﻿@using Sogeti.Provisioning.Domain
+@model Sogeti.ProvisioningWeb.Models.SiteCollectionTemplateCreationModel
+@{
+    ViewBag.Title = "Create Sitecollection";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="ms-Grid-row ms-bgColor-red ms-fontColor-white intro">
+    <div class="ms-Grid-col ms-u-lg10 ms-u-xl8 ms-u-xlPush2 ms-u-lgPush1 jumbotron">
+        <h2 class="ms-font-su ms-fontColor-white">@ViewBag.Title!</h2>
+
+    </div>
+</div>
+<div class="ms-Grid-row">
+    <div class="ms-Grid-col ms-u-lg10 ms-u-xl8 ms-u-xlPush2 ms-u-lgPush1 ">
+        <form class="Form" id="formId" action="/SiteCollection/CreateSiteCollection?@SharePointContext.CloneQueryString(ViewContext.HttpContext.Request)" enctype="multipart/form-data" method="post">
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.SiteCreationTemplates)
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="ms-TextField is-required">
+                <label class="ms-Label">Name</label>
+                <div class="ms-TextField">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "ms-TextField-field" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="ms-TextField is-required">
+                <label class="ms-Label">Description</label>
+                <div class="ms-TextField">
+                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "ms-TextField-field" } })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="ms-TextField is-required">
+                <label class="ms-Label">@Html.DisplayNameFor(model => model.SelectedSiteCreationTemplate)</label>
+            </div>
+
+            <div class="ms-Grid-row">
+                <div class="ms-Grid-col ms-u-sm4 ms-u-md4 ms-u-lg3">
+                    <div class="ms-Dropdown">
+                        @Html.DropDownListFor(model => model.SelectedSiteCreationTemplate, Model.SiteTemplateList, new { SelectedSiteCreationTemplate = "SelectedSiteCreationTemplate", @class = "ms-Dropdown" })
+                        @Html.ValidationMessageFor(model => model.SelectedSiteCreationTemplate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="ms-Grid-col ms-u-sm0 ms-u-md5 ms-u-lg7" id="SelectedTemplateDescriptionBox">
+                    <label class="ms-TextField-description template-description" id="SelectedTemplateDescription"></label>
+                </div>
+            </div>
+
+            <div class="ms-TextField is-required">
+                <label class="ms-Label">Site Provisioning Type</label>
+                <div class="ms-Dropdown">
+                    @Html.DropDownList("SiteProvisioningType", EnumHelper.GetSelectList(typeof(SiteProvisioningType)), new { @class = "ms-Dropdown" })
+                </div>
+            </div>
+
+            <div class="ms-TextField is-required">
+                <label class="ms-Label">Managed Path Type</label>
+                <div class="ms-Dropdown">
+                    @Html.DropDownList("ManagedPathType", EnumHelper.GetSelectList(typeof(ManagedPathType)), new { @class = "ms-Dropdown" })
+                </div>
+            </div>
+
+            <div class="ms-TextField is-required">
+                <label class="ms-Label">@Html.DisplayNameFor(model => model.TemplateId)</label>
+                <div class="ms-TextField">
+                    @Html.EditorFor(model => model.TemplateId, new { htmlAttributes = new { @class = "ms-TextField-field" } })
+                    @Html.ValidationMessageFor(model => model.TemplateId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="ms-TextField is-required">
+                <label class="ms-Label">@Html.DisplayNameFor(model => model.TimeZoneId)</label>
+                <div class="ms-TextField">
+                    @Html.EditorFor(model => model.TimeZoneId, new { htmlAttributes = new { @class = "ms-TextField-field" } })
+                    @Html.ValidationMessageFor(model => model.TimeZoneId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="ms-TextField is-required">
+                <label class="ms-Label">@Html.DisplayNameFor(model => model.Lcid)</label>
+                <div class="ms-TextField">
+                    @Html.EditorFor(model => model.Lcid, new { htmlAttributes = new { @class = "ms-TextField-field" } })
+                    @Html.ValidationMessageFor(model => model.Lcid, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="ms-TextField is-required">
+                <label class="ms-Label">@Html.DisplayNameFor(model => model.StorageMaximumLevel)</label>
+                <div class="ms-TextField">
+                    @Html.EditorFor(model => model.StorageMaximumLevel, new { htmlAttributes = new { @class = "ms-TextField-field" } })
+                    @Html.ValidationMessageFor(model => model.StorageMaximumLevel, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="SubmitButton">
+                <button class="ms-Button ms-Button--primary ms-bgColor-red"><span class="ms-Button-label">Create</span></button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@Scripts.Render("~/bundles/jquery")
+<script src="~/Scripts/App/Helpers/TemplateDescription.js"></script>

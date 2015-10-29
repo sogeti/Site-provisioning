@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="4c4fe144-dd1b-46fa-8305-7b9cb0bc9414" solutionId="4c4fe144-dd1b-46fa-8305-7b9cb0bc9414" resetWebServer="false" sharePointProductVersion="16.0" name="Sogeti.Provisioning" xmlns="http://schemas.microsoft.com/VisualStudio/2008/SharePointTools/PackageModel">
+  <features>
+    <featureReference itemId="38b22714-9556-4d05-a699-86d028e011b1" />
+  </features>
+</package>

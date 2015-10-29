@@ -1,0 +1,48 @@
+﻿@using Sogeti.Provisioning.Domain
+@model Sogeti.ProvisioningWeb.Models.SiteTemplateViewModel
+@{
+    ViewBag.Title = "Create a Site Template";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="ms-Grid-row ms-bgColor-red ms-fontColor-white intro">
+    <div class="ms-Grid-col ms-u-lg10 ms-u-xl8 ms-u-xlPush2 ms-u-lgPush1 jumbotron">
+        <h2 class="ms-font-su ms-fontColor-white">
+            @ViewBag.Title
+        </h2>
+    </div>
+</div>
+<div class="ms-Grid-row">
+    <div class="ms-Grid-col ms-u-lg10 ms-u-xl8 ms-u-xlPush2 ms-u-lgPush1">
+        <br/>
+        <form class="Form" id="formId" action="/SiteTemplate/Create?@SharePointContext.CloneQueryString(ViewContext.HttpContext.Request)" enctype="multipart/form-data" method="post">
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.PnpFileGuid)
+            @Html.HiddenFor(model => model.BlobContainer)
+            @Html.HiddenFor(model => model.SiteTemplateGuid)
+
+            @Html.Partial("_TemplateEditPartial", Model)
+
+            <div class="SubmitButton">
+                <button class="ms-Button ms-Button--compound">
+                    <span class="ms-Button-label">Save</span>
+                    <span class="ms-Button-description">Save template settings.</span>
+                </button>
+            </div>
+        </form>
+        <br/>
+
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/devpnp")
+
+<script src="~/Scripts/App/Views/Create.js"></script>
+ 
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+}

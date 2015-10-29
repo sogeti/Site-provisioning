@@ -1,0 +1,80 @@
+﻿@using Sogeti.Provisioning.Domain
+@model Sogeti.ProvisioningWeb.Models.SiteTemplateViewModel
+@{
+    ViewBag.Title = "Site Template";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="ms-Grid-row ms-bgColor-red ms-fontColor-white intro">
+    <div class="ms-Grid-col ms-u-lg10 ms-u-xl8 ms-u-xlPush2 ms-u-lgPush1 jumbotron">
+        <h2 class="ms-font-su ms-fontColor-white">
+         @ViewBag.Title
+        </h2>
+    </div>
+</div>
+<div class="ms-Grid-row">
+    <div class="ms-Grid-col ms-u-lg10 ms-u-xl8 ms-u-xlPush2 ms-u-lgPush1 ">
+        <form class="Form" id="formId" action="/SiteTemplate/Edit?@SharePointContext.CloneQueryString(ViewContext.HttpContext.Request)" enctype="multipart/form-data" method="post">
+            @Html.Partial("_TemplateEditPartial", Model)
+            <div class="SubmitButton ms-Grid-row">
+                <button class="ms-Button ms-Button--primary ms-bgColor-red"><span class="ms-Button-label">Update</span></button>
+            </div>
+            <br />
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $('.SubmitButton > .ms-Button').addClass('is-disabled');
+        $(document).on('click', '#PnpTemplateFileUploadBtn', function (e) {
+            $('#PnpTemplateFileUpload').click();
+        });
+
+        $(document).on('click', '#bgFile.preview-failed', function (e) {
+            $('#bgFileUpload').click();
+        });
+        $(document).on('click', '#clrFile.preview-failed', function (e) {
+            $('#clrFileUpload').click();
+        });
+        $(document).on('click', '#fontFile.preview-failed', function (e) {
+            $('#fontFileUpload').click();
+        });
+        $(document).on('click', '#logoFile.preview-failed', function (e) {
+            $('#logoFileUpload').click();
+        });
+
+        $(document).on('change', '#PnpTemplateFileUpload', function (e) {
+            alert('change triggered');
+            var _file = $('#PnpTemplateFileUpload')[0].files[0];
+            var form = $('#formId')[0];
+            $.ajax({
+                cache: false,
+                async: true,
+                type: "POST",
+                url: '/SiteTemplate/ValidateTemplate',
+                data: new FormData( form ),
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    console.log(data);
+                    if (data === 'OK') {
+                        $('div.upload-result').html(_file.name + ' <i class=\'ms-Icon ms-Icon--check ms-fontColor-green\'></i>');
+                        $('div.upload-result-failed').text('');
+                        $('.SubmitButton > .ms-Button').removeClass('is-disabled');
+                    } else {
+                        $('div.upload-result').html(_file.name + ' <i class=\'ms-Icon ms-Icon--x ms-fontColor-red\'></i>');
+                        $('div.upload-result-failed').text(data);
+                        $('.SubmitButton > .ms-Button').addclass('is-disabled');
+                    }
+                        
+                },
+                error: function () {
+                    alert("failed");
+                }
+            });
+            e.preventDefault();
+        });
+    
+    </script>
+}

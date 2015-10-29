@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Sogeti.Provisioning.Domain.SiteTemplate>
+@using Sogeti.Provisioning.Domain
+@{
+    ViewBag.Title = "Manage Templates";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="ms-Grid-row ms-bgColor-red ms-fontColor-white intro">
+    <div class="ms-Grid-col ms-u-lg10 ms-u-xl8 ms-u-xlPush2 ms-u-lgPush1 jumbotron">
+        <h2 class="ms-font-su ms-fontColor-white">@ViewBag.Title</h2>
+    </div>
+</div>
+<div class="ms-Grid-row">
+    <div class="ms-Grid-col ms-u-sm12 ms-u-lg10 ms-u-xl8 ms-u-xlPush2 ms-u-lgPush1 ">
+        <div class="ms-Grid-row">
+            <div class="ms-Grid-col  ms-u-sm10">
+                <h2 class="ms-font-xl ms-fontWeight-semibold">Site templates</h2>
+                <p class="ms-font-m">A Sitetempate is a custom .... Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec augue nibh. Nullam laoreet tortor blandit felis porta viverra. Morbi sapien dolor, feugiat ut tincidunt eget, lacinia a dui. Vestibulum consectetur quam ut diam scelerisque, a laoreet arcu volutpat. Mauris vulputate lectus lacus.</p>
+
+            </div>
+            </div>
+            @foreach (var template in Model)
+            {
+                <div class="ms-ListItem">
+
+                    <div class="ms-Grid-row">
+                        <div class="ms-Grid-row">
+                            <div class="ms-Grid-col  ms-u-sm1  ms-fontSize-xxl" style="vertical-align: top">
+                                <i class="ms-fontColor-green ms-Icon ms-Icon--document"></i>
+                            </div>
+
+                            <div class="ms-Grid-col ms-u-sm8 ">
+                                <div class="ms-ListItem-primaryText  ms-fontSize-xxl">@template.Name</div>
+                            </div>
+
+                            <div class="ms-Grid-col ms-u-sm3">
+                                <div class="ms-ListItem-action">
+                                    <a href="@Url.Action("Edit", "SiteTemplate")/@template.Name?@SharePointContext.CloneQueryString(ViewContext.HttpContext.Request)">
+                                        <i class="ms-Icon ms-Icon--pencil" id="editBtn"></i>
+                                    </a>
+                                </div>
+                                <div class="ms-ListItem-action">
+                                    <a id="deleteTemplateBtn" href="/SiteTemplate/Delete/@template.Name?@SharePointContext.CloneQueryString(ViewContext.HttpContext.Request)">
+                                        <i class="ms-Icon ms-Icon--trash"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="ms-Grid-row">
+                            <div class="ms-Grid-col  ms-u-sm1  ms-fontSize-xxl" style="text-align: right; vertical-align: top">
+                            </div>
+                            <div class="ms-Grid-col ms-u-sm8">
+                                <div class="ms-ListItem-secondaryText">Created on: @template.CreationTimeStamp</div>
+                                <div class="ms-ListItem-secondaryText">Created by: @template.Id</div>
+                                <div class="ms-ListItem--document">@template.Description</div>
+                            </div>
+                        </div>
+                            
+                        </div>
+                </div>
+            }
+        </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+<script src="~/Scripts/App/Views/SiteTemplateIndex.js"></script>
+
+}

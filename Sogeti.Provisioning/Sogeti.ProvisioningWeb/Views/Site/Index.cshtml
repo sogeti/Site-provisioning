@@ -1,0 +1,80 @@
+﻿@using Sogeti.Provisioning.Domain
+@model Sogeti.ProvisioningWeb.Models.SiteTemplateCreationModel
+
+@{
+    ViewBag.Title = "Create Sub Site";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="ms-Grid-row ms-bgColor-red ms-fontColor-white intro">
+    <div class="ms-Grid-col ms-u-lg10 ms-u-xl8 ms-u-xlPush2 ms-u-lgPush1 jumbotron">
+        <h2 class="ms-font-su ms-fontColor-white">@ViewBag.Title!</h2>
+
+    </div>
+</div>
+<div class="ms-Grid-row">
+    <div class="ms-Grid-col ms-u-sm2"></div>
+    <div class="ms-Grid-col ms-u-sm4 ">
+        <form class="Form" id="formId" action="/Site/CreateSite?@SharePointContext.CloneQueryString(ViewContext.HttpContext.Request)" enctype="multipart/form-data" method="post">
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.SiteCreationTemplates)
+            @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+
+            <br/>
+            <div class="ms-TextField is-required">
+                <label class="ms-Label">@Html.DisplayNameFor(model => model.SelectedSiteCreationTemplate)</label>
+            </div>
+            <div class="ms-Dropdown" tabindex="0">
+                <i class="ms-Dropdown-caretDown ms-Icon ms-Icon--caretDown"></i>
+                @Html.DropDownListFor(model => model.SelectedSiteCreationTemplate, Model.SiteTemplateList, new {SelectedSiteCreationTemplate = "SelectedSiteCreationTemplate", @class = "ms-Dropdown-select"})
+                @Html.ValidationMessageFor(model => model.SelectedSiteCreationTemplate, "", new {@class = "text-danger"})
+            </div>
+
+          
+            <div class="ms-TextField is-required">
+                <label class="ms-Label">Name</label>
+                <div class="ms-TextField">
+                    @Html.EditorFor(model => model.Name, new {htmlAttributes = new {@class = "ms-TextField-field"}})
+                    @Html.ValidationMessageFor(model => model.Name, "", new {@class = "text-danger"})
+                </div>
+            </div>
+
+
+
+
+            <div class="ms-TextField is-required">
+                <label class="ms-Label">Description</label>
+                <div class="ms-TextField">
+                    @Html.EditorFor(model => model.Description, new {htmlAttributes = new {@class = "ms-TextField-field"}})
+                    @Html.ValidationMessageFor(model => model.Description, "", new {@class = "text-danger"})
+                </div>
+            </div>
+
+
+            <div class="SubmitButton">
+                <button class="ms-Button ms-Button--primary"><span class="ms-Button-label">Create</span></button>
+            </div>
+
+        </form>
+    </div>
+    <div class="ms-Grid-col ms-u-sm4">
+      
+        <div class="ms-Label" id="SelectedTemplateDescriptionBox" style="margin-top: 50px; padding: 25px ">
+            <label id="SelectedTemplateDescription"></label>
+        </div>
+    </div>
+    <div class="ms-Grid-col ms-u-sm2"></div>
+</div>
+
+
+
+@section Scripts {
+
+@Scripts.Render("~/bundles/jqueryval")
+@Scripts.Render("~/bundles/devpnp")
+    <script src="~/Scripts/App/Helpers/TemplateDescription.js"></script>
+<link rel="stylesheet" href="//appsforoffice.microsoft.com/fabric/1.0/fabric.min.css" />
+
+
+
+}

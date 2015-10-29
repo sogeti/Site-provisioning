@@ -1,0 +1,60 @@
+﻿@using Sogeti.Provisioning.Domain
+@model IOrderedEnumerable<Sogeti.Provisioning.DataAccess.Repositories.NotificationEntity>
+<div class="ms-Grid-col ms-u-sm12 ms-u-md12 ms-u-lg5" style="padding:10px">
+    <div class="ms-font-su ms-u-sm12">Progress Overview</div>
+    <div class="ms-Grid-row hoverHighlight ms-u-sm12">
+        <span class="ms-Grid-col ms-font-xl ms-u-sm1" style="padding-bottom:0px"><b></b></span>
+        <span class="ms-Grid-col ms-font-xl ms-u-sm4" style="padding-bottom:0px"><b>Template Name</b></span>
+        <span class="ms-Grid-col ms-font-xl ms-u-sm3" style="padding-bottom:3px"><b>Status detail</b></span>
+        <span class="ms-Grid-col ms-font-xl ms-u-sm4" style="padding-bottom:3px"><b>TimeStamp</b></span>
+    </div>
+    @if (Model.ToList().Count > 0)
+            {
+                foreach (var notification in Model)
+                {
+            <div class="ms-Grid-row hoverHighlight ms-u-sm12" style="padding:5px;">
+                @switch (@notification.ProvisioningState)
+                    {
+                        case "Created":
+                        <text>
+                            <i id="progress-" @notification.RequestID class="ms-Grid-col ms-fontColor-green ms-Icon ms-Icon--check buttonStyle ms-u-sm1"></i>
+                        </text>
+                        break;
+                    case "Set":
+                        <text>
+                            <i class="ms-Grid-col ms-fontColor-orangeLight ms-Icon ms-Icon--refresh buttonStyle ms-u-sm1"></i>
+                        </text>
+                        break;
+                    case "Unfolded":
+                        <text>
+                            <i class="ms-Grid-col ms-fontColor-green ms-Icon ms-Icon--check buttonStyle ms-u-sm1"></i>
+                        </text>
+                        break;
+                    case "Done":
+                        <text>
+                            <i class="ms-Grid-col ms-fontColor-red ms-Icon ms-Icon--circlePill buttonStyle ms-u-sm1"></i>
+                        </text>
+                        break;
+                    case "Ready":
+                        <text>
+                            <i class="ms-Grid-col ms-fontColor-orangeLight ms-Icon ms-Icon--check buttonStyle ms-u-sm1"></i>
+                        </text>
+                        break;
+                    case "Failed":
+                        <text>
+                            <i class="ms-Grid-col ms-fontColor-red ms-Icon ms-Icon--xCircle buttonStyle ms-u-sm1"></i>
+                        </text>
+                        break;
+                    default:
+                        <text>
+                            <i class="ms-Grid-col ms-fontColor-blueLight ms-Icon ms-Icon--question buttonStyle ms-u-sm1"></i>
+                        </text>
+                        break;
+                }
+                <span class="ms-Grid-col  ms-ListItem-tertiaryText ms-u-sm4" style="top:-3px">@notification.UsedTemplate </span>
+                <span class="ms-Grid-col  ms-ListItem-tertiaryText ms-u-sm3" style="top:-3px">@notification.ProvisioningState </span>
+                <span class="ms-Grid-col  ms-ListItem-tertiaryText ms-u-sm4" style="top:-3px">@notification.StringTimeStamp </span>
+            </div>
+        }
+    }
+</div>

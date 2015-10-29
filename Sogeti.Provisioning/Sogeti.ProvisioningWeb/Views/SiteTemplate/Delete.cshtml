@@ -1,0 +1,48 @@
+﻿@using Sogeti.Provisioning.Domain
+@model Sogeti.Provisioning.Domain.SiteTemplate
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="ms-Grid-row ms-bgColor-red ms-fontColor-white intro">
+    <div class="ms-Grid-col ms-u-lg10 ms-u-xl8 ms-u-xlPush2 ms-u-lgPush1 jumbotron">
+        <h2 class="ms-font-su ms-fontColor-white">@ViewBag.Title</h2>
+    </div>
+</div>
+<div class="ms-Grid-row">
+    <div class="ms-Grid-col ms-u-sm12 ms-u-lg10 ms-u-xl8 ms-u-xlPush2 ms-u-lgPush1 ">
+        <form class="form-horizontal" id="formId" action="/SiteTemplate/DeleteSiteTemplate/@Model.Name?@SharePointContext.CloneQueryString(ViewContext.HttpContext.Request)" enctype="multipart/form-data" method="post">
+
+            <div class="ms-TextField">
+                <label class="ms-Label">Name</label>
+                <div class="ms-TextField">
+                    @Html.TextBoxFor(model => model.Name, new { @readonly = "readonly", @style = "width:300px;" })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="ms-TextField">
+                <label class="ms-Label">Description</label>
+                <div class="ms-TextField">
+                    @Html.TextAreaFor(model => model.Description, new { @readonly = "readonly", @class = "ms-TextField-field ms-TextField--multiline template-description", @placeholder = "Put your description text here" })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div>
+                <div class="SubmitButton">
+                    <button type="submit" value="Delete" class="ms-Button ms-Button--primary"><span class="ms-Button-label">Delete</span></button>
+                </div>
+            </div>
+        </form>
+        <br />
+        <div>
+            <button class="ms-Button ms-Button--primary"
+                    onclick="location.href = '/SiteTemplate/Index?@SharePointContext.CloneQueryString(ViewContext.HttpContext.Request)'">
+                <span class="ms-Button-label">Back to list</span>
+            </button>
+        </div>
+    </div>
+</div>
+

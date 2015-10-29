@@ -1,0 +1,74 @@
+﻿@model Sogeti.ProvisioningWeb.Models.SiteTemplateViewModel
+
+
+<div class="ms-Dialog" id="userDlg">
+    <div class="ms-Overlay"></div>
+    <div class="ms-Dialog-main">
+        <button class="ms-Dialog-button ms-Dialog-button--close">
+            <i class="ms-Icon ms-Icon--x"></i>
+        </button>
+        <div class="ms-Dialog-header">
+            <p class="ms-Dialog-title">Add a user</p>
+        </div>
+        <div class="ms-Dialog-inner">
+            <div class="ms-Dialog-content">
+                <p class="ms-Dialog-subText">Please find and select the user below</p>
+                <div class="ms-PeoplePicker">
+                    <div class="ms-PeoplePicker-searchBox">
+                        <input class="ms-PeoplePicker-searchField" type="text" placeholder="+">
+                        <div class="ms-Callout ms-Callout--arrowLeft searchCallout">
+                            <div class="ms-Callout-main">
+                                <div class="ms-Callout-header">
+                                    <p class="ms-Callout-title">Not enough characters</p>
+                                </div>
+                                <div class="ms-Callout-inner">
+                                    <div class="ms-Callout-content">
+                                        <p class="ms-Callout-subText ms-Callout-subText--s">We need at least 3 characters to search.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ms-PeoplePicker-results">
+                        <div class="ms-PeoplePicker-resultGroups">
+                            <div class="ms-PeoplePicker-resultGroup">
+                                <div class="ms-PeoplePicker-resultGroupTitle">Search results</div>
+                                <ul class="ms-PeoplePicker-resultList">
+                                    @foreach (var person in Model.Persons)
+                                    {
+                                        <li class="ms-PeoplePicker-result">
+                                            <button class="ms-PeoplePicker-resultBtn">
+                                                <div class="ms-Persona">
+                                                    <div class="ms-Persona-imageArea">
+                                                        <i class="ms-Persona-placeholder ms-Icon ms-Icon--person"></i>
+                                                        <img class="ms-Persona-image" src="http://placehold.it/50?text=Photo" />
+                                                        <div class="ms-Persona-presence"></div>
+                                                    </div>
+                                                    <div class="ms-Persona-details">
+                                                        <div class="ms-Persona-primaryText">@person.Name</div>
+                                                        <div class="ms-Persona-secondaryText">@person.Email</div>
+                                                    </div>
+                                                </div>
+                                                <button class="ms-PeoplePicker-resultAction js-resultRemove"><i class="ms-Icon ms-Icon--x"></i></button>
+                                            </button>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="ms-Dialog-actions">
+                <div class="ms-Dialog-actionsRight">
+                    <button class="ms-Dialog-action ms-Button ms-Button--primary" id="confirmDlgBtn">
+                        <span class="ms-Button-label">OK</span>
+                    </button>
+                    <button class="ms-Dialog-action ms-Button" id="cancelDlgBtn">
+                        <span class="ms-Button-label">Cancel</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

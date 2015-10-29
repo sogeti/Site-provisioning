@@ -1,0 +1,302 @@
+﻿body {
+	max-width: 100%;
+	overflow-x: hidden;
+}
+
+/* Office UI Fabric Overrides*/
+.ms-bgColor-themeDarker,
+.ms-bgColor-themeDarker--hover:hover {
+	background-color: #004578 !important;
+}
+
+.ms-fontColor-white,
+.ms-fontColor-white--hover:hover {
+	color: #ffffff !important;
+}
+
+.ms-borderColor-white,
+.ms-borderColor-white--hover:hover {
+	border-color: #ffffff !important;
+}
+
+.ms-PeoplePicker-resultList {
+	overflow-x: hidden;
+}
+
+.is-selected{
+	border-bottom: 2px solid white !important;
+}
+
+.ms-NavBar-chevronDown {
+	color: white !important;
+}
+
+.ms-Icon--menu {
+	color: white;
+}
+
+@media (max-width: 479px) {
+	.ms-NavBar.is-open .ms-NavBar-items {
+		background-color: #004578 !important;
+	}
+
+	.ms-NavBar-item:hover {
+		background-color: #106ebe !important;
+	}
+}
+
+footer 
+{
+	background-color:#004578;
+	color:white;
+	font-family: "Segoe UI Regular WestEuropean", "Segoe UI", "Segoe WP", Tahoma, Arial, sans-serif;
+	clear:both;    
+	text-align:center;
+	font-weight: normal;
+	font-size: 10px;
+	height: 80px;    
+	width: 100%; 	 	 
+}
+
+.upload-result:not(:empty) {
+	font-family: 'Office365Icons', 'Segoe UI Semibold WestEuropean', 'Segoe UI Semibold', 'Segoe WP Semibold', 'Segoe UI', 'Segoe WP', Tahoma, Arial, sans-serif;
+	overflow: hidden;
+	text-wrap: avoid;
+	text-overflow:ellipsis;
+	display: inline-block;
+}
+
+.upload-result:not(:empty):before {
+	font-family: 'Office365Icons';
+	content: '\e031'
+}
+
+.SubmitButton {
+	margin-top: 30px;
+}
+
+.templateFile-preview {
+	position: relative;
+	margin-left: 10px;
+	width: 60px;
+	height: 80px;
+	display: inline-block;
+}
+
+.preview-failed::before{
+	font-family:'Office365Icons';
+	height: 20px;
+	right: -10px;
+	top: -5px;
+	width: 20px;
+	position: absolute;
+	border: 1px solid red;
+	z-index: 8;
+	content:'\e042';
+	background-color: red;
+	border-radius: 20px;
+	vertical-align: -50%;
+	color: #ffffff;
+	font-size: 12px;
+	text-align:center;
+	line-height: 1.7;
+}
+
+.preview-failed:hover{
+	cursor: pointer;
+}
+
+.preview-failed:hover::before{
+	font-family:'Office365Icons';
+	height: 20px;
+	right: -10px;
+	top: -5px;
+	width: 20px;
+	position: absolute;
+	border: 1px solid blue;
+	z-index: 8;
+	content:'\e076';
+	background-color: blue;
+	border-radius: 20px;
+	vertical-align: -50%;
+	color: #ffffff;
+	font-size: 12px;
+	text-align:center;
+	line-height: 1.7;
+}
+.preview-success::before{
+	font-family:'Office365Icons';
+	height: 20px;
+	right: -10px;
+	top: -5px;
+	width: 20px;
+	position: absolute;
+	border: 1px solid green;
+	z-index: 8;
+	content:'\e041';
+	background-color: green;
+	border-radius: 20px;
+	vertical-align: -50%;
+	color: #ffffff;
+	font-size: 12px;
+	text-align:center;
+	line-height: 1.7;
+}
+
+.preview-success:hover{
+	cursor: pointer;
+}
+
+.preview-success:hover::before{
+	font-family:'Office365Icons';
+	height: 20px;
+	right: -10px;
+	top: -5px;
+	width: 20px;
+	position: absolute;
+	border: 2px solid blue;
+	z-index: 8;
+	content:'\e076';
+	background-color: blue;
+	border-radius: 20px;
+	vertical-align: -50%;
+	color: #ffffff;
+	font-size: 12px;
+	text-align:center;
+	line-height: 1.7;
+}
+
+.templateFile-preview-result {
+	position: absolute;
+	bottom: 0px;
+	width: 100%;
+	text-align: center;
+}
+
+.templateFile-preview img{
+	position: absolute;
+	width: 100%;
+	height: 50px;
+	margin: 0 auto;
+	overflow: hidden;
+	border: 1px solid #f3ebeb;
+	overflow: hidden;
+}
+
+.templateFile-preview i{
+	position: absolute;
+	border: 1px solid red;
+	color: rgba(0, 90, 158, 0.76);
+	font-size: 50px;
+	text-overflow: clip;
+	text-align: center;
+	border: 1px solid #f3ebeb;
+	width: 100%;
+	overflow: hidden;
+}
+
+.clearfix {
+	overflow: auto;
+}
+
+.sogeti-TemplateFiles {
+	margin-top: 20px;
+}
+
+.hidden-file-upload {
+	position: fixed;
+	top: -100px;
+}
+
+a.ms-Button{
+	text-decoration: none;
+}
+
+.progress-status{
+	max-width: 400px;
+}
+
+.ms-Callout--arrowLeft.searchCallout {
+	display: none;
+	position: absolute;
+	top: 0px;
+	right: -300px;
+	z-index: 99999;
+}
+
+#userDlg {
+	display: none;
+}
+
+/*----- Accordion -----*/
+.accordion, .accordion * {
+	-webkit-box-sizing:border-box; 
+	-moz-box-sizing:border-box; 
+	box-sizing:border-box;
+}
+ 
+.accordion {
+	overflow:hidden;
+	box-shadow:0px 1px 3px rgba(0,0,0,0.25);
+	border-radius:3px;
+	background:#f7f7f7;
+}
+
+.block {
+	height: 24px;
+	border-bottom: 1px lightgrey solid;
+}
+ 
+.template-description{
+	height: 100px  !important;
+}
+
+.template-description-fadein{
+	background-color: lightyellow;
+}
+
+.maxwidth {
+	width: 99%;
+}
+
+.addPersonIcon {
+	position: relative;
+	margin-left: 10px;
+	width: 70px;
+	height: 80px;
+	display: inline-block;
+}
+
+.addPersonIcon i{
+	position: absolute;
+	border: 1px solid red;
+	color: #000000;
+	font-size: 50px;
+	text-overflow: clip;
+	text-align: center;
+	border: 1px solid #c8c8c8;
+	width: 100%;
+	overflow: hidden;
+}
+
+.addPersonIcon:hover {
+	cursor: pointer;
+}
+
+.ms-ListItem:hover {
+	background-color: #f0f0f0;
+}
+
+.twoPixDown {
+	margin-top: 2px;
+}
+
+.ms-Button.ms-Button--primary {
+	background-color: #E81123;
+	border-color: #E81123;
+}
+
+.ms-Button.ms-Button--primary:hover {
+	background-color: #A80000;
+	border-color: #A80000;
+}

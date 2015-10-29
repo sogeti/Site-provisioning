@@ -1,0 +1,36 @@
+﻿@model Sogeti.ProvisioningWeb.Models.SiteTemplateViewModel
+
+
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+<div class="ms-TextField is-required">
+    <label class="ms-Label">Name</label>
+    <div >
+        @Html.EditorFor(model => model.SiteTemplateName, new { htmlAttributes = new { @class = "ms-TextField-field", @placeholder = "Put the template name here" } })
+     
+    </div>
+</div>
+<div class="ms-TextField">
+    <label class="ms-Label">Description</label>
+    <div >
+        @Html.TextAreaFor(model => model.Description, new { @class = "ms-TextField--multiline ms-TextField-field template-description maxwidth" })
+     
+    </div>
+</div>
+<h2 class="ms-font-xl ms-fontWeight-semibold">Template files</h2>
+@Html.Partial("__TemplateFiles", Model)
+
+<h2 class="ms-font-xl ms-fontWeight-semibold">Security</h2>
+@Html.Partial("__Security", Model)
+
+<h2 class="ms-font-xl ms-fontWeight-semibold">Site Policy</h2>
+@Html.Partial("__SitePolicy", Model)
+
+
+@if (Model != null)
+{
+    {
+        Html.RenderPartial("_AddUserPartial");
+    }
+}

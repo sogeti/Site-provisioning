@@ -1,0 +1,71 @@
+﻿@model Sogeti.ProvisioningWeb.Models.SiteTemplateViewModel
+
+
+
+<div class="ms-Grid" style="margin-left: 10px">
+ 
+        <div class=" ms-Grid-row">
+        <div class="ms-Grid-row ms-ChoiceField" style="margin-left: 4px">
+            <input class="ms-ChoiceField-input" id="switchDefaultTemplate" type="checkbox" checked=@Model.UsesDefaultTemplateFiles />
+                <label for="switchDefaultTemplate" class="ms-ChoiceField-field">
+                    <span class="ms-Label"> Use default files for template?</span>
+                </label>
+            </div>
+            <div class="ms-Grid-row">
+                <div class="ms-Grid-col ms-u-sm3 ">
+                    <h2 class="ms-font-l ms-fontWeight-regular">Logo file</h2>
+                    <div>
+     
+                            <div class="templateFile-preview preview-failed" id="logoFile">
+                                <i class="ms-Icon ms-Icon--picture"></i>
+                    </div>
+                    
+
+
+
+                    </div>
+                  </div>
+
+                <div class="ms-Grid-col ms-u-sm3 ">
+                    <h2 class="ms-font-l ms-fontWeight-regular">Font file</h2>
+                    <div>
+                        <div class="templateFile-preview preview-failed" id="fontFile">
+                            <i class="ms-Icon ms-Icon--fontColor"></i>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="ms-Grid-col ms-u-sm3 ">
+                    <h2 class="ms-font-l ms-fontWeight-regular">Background</h2>
+                    <div>
+                        <div class="templateFile-preview preview-failed" id="bgFile">
+                            <i class="ms-Icon ms-Icon--picture"></i>
+ 
+                        </div>
+                    </div>
+                </div>
+
+
+            <div class="ms-Grid-col ms-u-sm3">
+                    <h2 class="ms-font-l ms-fontWeight-regular">Color file</h2>
+              <div>
+                        <div class="templateFile-preview preview-failed" id="clrFile">
+                            <i class="ms-Icon ms-Icon--paint"></i>
+                        </div>
+                    </div>
+                </div>
+
+                </div>
+        </div>
+
+    @Html.HiddenFor(model => model.LogoBlobLocation)
+    @Html.HiddenFor(model => model.FileBgBlobLocation)
+    @Html.HiddenFor(model => model.FileClrBlobLocation)
+    @Html.HiddenFor(model => model.FontBlobLocation)
+
+    <input type="file" id="bgFileUpload" name="ExternFileBg" size="40" class="hidden-file-upload" />
+        <input type="file" id="clrFileUpload" name="ExternFileClr" size="40" class="hidden-file-upload" />
+        <input type="file" id="logoFileUpload" name="ExternFileLogo" size="40" class="hidden-file-upload" />
+    <input type="file" id="fontFileUpload" accept=".spfont" name="ExternFileFont" size="40" class="hidden-file-upload" />
+</div>
